@@ -1,13 +1,13 @@
-
+import Login from "./Login";
 
 function App() {
   return (
-    <div className="app">
+    <div>
       <header>
         <h1>Book Compass</h1>
       </header>
       <main>
-        <p>Welcome to Book Compass!</p>
+        <Login />
       </main>
     </div>
   );
