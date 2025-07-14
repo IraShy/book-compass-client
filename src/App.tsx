@@ -1,15 +1,19 @@
-import Login from "./Login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import PageNotFound from "./components/404";
 
 function App() {
   return (
-    <div>
-      <header>
-        <h1>Book Compass</h1>
-      </header>
-      <main>
-        <Login />
-      </main>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </Router>
   );
 }
 
