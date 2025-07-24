@@ -1,0 +1,15 @@
+:root {
+  --color-primary: #4a7356;
+  --color-primary-dark: #3a5a44;
+  --color-secondary: #f7f8f9;
+  --color-accent: #b0b4db;
+  --color-text: #1a1a1a;
+  --color-border: #d0d0d0;
+  --color-white: #ffffff;
+  --color-error: theme("colors.red.600");
+  --color-api-error-bg: theme("colors.red.100");
+  --color-api-error-text: theme("colors.red.800");
+  /* --color-error: #dc2626;
+  --color-api-error-bg: #fee2e2;
+  --color-api-error-text: #991b1b; */
+}

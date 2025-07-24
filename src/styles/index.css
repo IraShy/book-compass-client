@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@import "./variables.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  @apply min-h-screen flex flex-col items-center p-8;
+  background-color: var(--color-secondary);
+}
+
+.title {
+  @apply text-center mb-6 text-3xl font-medium;
+  color: var(--color-primary);
+}
+
+.btn {
+  @apply p-3 mt-6 text-white rounded transition-colors duration-200;
+  background-color: var(--color-primary);
+
+  &:hover {
+    background-color: var(--color-primary-dark);
+  }
+}
+
+/* ***** FORMS ***** */
+
+.form-container {
+  @apply max-w-md w-full p-8 rounded-lg shadow-md;
+  background-color: var(--color-white);
+}
+
+.label {
+  @apply block mb-2 font-medium;
+  color: var(--color-text);
+}
+
+.input {
+  @apply w-full p-3 border-2 rounded focus:outline-none focus:ring-1;
+  border-color: var(--color-border);
+  background-color: var(--color-white);
+}
+
+.input:focus {
+  border-color: var(--color-accent);
+  --tw-ring-color: var(--color-accent);
+}
+
+.input.input-error {
+  border-color: var(--color-error);
+}
+
+.input.input-error:focus {
+  border-color: var(--color-accent);
+  --tw-ring-color: var(--color-accent);
+}
+
+/* Remove default browser validation styles */
+input:not(.input-error):invalid {
+  box-shadow: none;
+}
+
+.password-input-wrapper {
+  @apply relative;
+}
+
+.password-input-wrapper .input {
+  @apply pr-12;
+}
+
+.password-toggle-btn {
+  @apply absolute inset-y-0 right-0 flex items-center px-3 text-lg cursor-pointer bg-transparent border-0 focus:outline-2 focus:outline-offset-2;
+  color: var(--color-text);
+
+  &:focus {
+    outline-color: var(--color-accent);
+  }
+}
+
+/* ***** ERROR MESSAGES ***** */
+
+/* Field errors (below the input) */
+.field-error-message {
+  @apply text-sm block;
+  color: var(--color-error);
+}
+
+/* API error message (at the top of the form) */
+.api-error-message {
+  @apply p-3 mb-4 rounded text-sm text-center border;
+  background-color: var(--color-api-error-bg);
+  color: var(--color-api-error-text);
+  border-color: var(--color-error);
+}
