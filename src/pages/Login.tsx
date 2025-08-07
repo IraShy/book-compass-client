@@ -88,17 +88,14 @@ function Login() {
         return;
       }
 
-      const response = await axios.post(
-        "http://localhost:8000/api/users/login",
-        {
-          email: formData.email,
-          password: formData.password,
-        }
-      );
+      const response = await axios.post(`users/login`, {
+        email: formData.email,
+        password: formData.password,
+      });
 
       console.log("Login successful:", response.data);
       setErrors({});
-      // TODO: Store token
+
       // TODO: send data to context
       navigate("/profile");
     } catch (error) {
