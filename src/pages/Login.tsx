@@ -1,116 +1,34 @@
-import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import type { LoginData, FormErrors } from "../types.ts";
+
+import { useForm } from "../hooks/useForm.ts";
+import { validateEmail, validatePassword } from "../utils/validation";
 import FormField from "../components/FormField.tsx";
 import PasswordField from "../components/PasswordField.tsx";
+import type { LoginData } from "../types.ts";
 
 function Login() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<LoginData>({
-    email: "",
-    password: "",
-  });
 
-  const [errors, setErrors] = useState<FormErrors>({});
-
-  useEffect(() => {
-    if (errors.api) {
-      console.error("API error:", errors.api);
-    }
-  }, [errors.api]);
-
-  // Validation for individual form fields
-  const validateField = (name: keyof LoginData, value: string): string => {
-    let error = "";
-    if (name === "email") {
-      if (!value.trim()) {
-        error = "Email is required";
-      } else if (!/\S+@\S+\.\S+/.test(value)) {
-        error = "Please enter a valid email address";
-      }
-    } else if (name === "password" && !value.trim()) {
-      error = "Password is required";
-    }
-    return error;
-  };
-
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
-    let isValid = true;
-
-    Object.keys(formData).forEach((key) => {
-      const name = key as keyof LoginData;
-      const value = formData[name];
-      const error = validateField(name, value);
-      if (error) {
-        newErrors[name] = error;
-        isValid = false;
-      }
-    });
-
-    setErrors(newErrors);
-    return isValid;
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    if (errors[name as keyof FormErrors]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }));
-    }
-    if (errors.api) {
-      setErrors((prev) => ({ ...prev, api: undefined }));
-    }
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    if (name === "email" || name === "password") {
-      const error = validateField(name, value);
-      setErrors((prev) => ({ ...prev, [name]: error || undefined }));
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    setErrors((prev) => ({ ...prev, api: undefined }));
-
-    try {
-      console.log("Form data:", formData);
-
-      if (!validateForm()) {
-        return;
-      }
-
-      const response = await axios.post(`users/login`, {
-        email: formData.email,
-        password: formData.password,
-      });
-
-      console.log("Login successful:", response.data);
-      setErrors({});
-
-      // TODO: send data to context
+  const submitHandler = async (data: LoginData) => {
+    const response = await axios.post("users/login", data);
+    if (response.status === 200) {
       navigate("/profile");
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const errorMessage = error.response?.data?.error || error.message;
-        setErrors((prev) => ({ ...prev, api: errorMessage }));
-      } else {
-        console.error("Network error:", error);
-        setErrors((prev) => ({
-          ...prev,
-          api: "Something went wrong. Please try again",
-        }));
-      }
     }
   };
+
+  const { formData, errors, handleChange, handleBlur, handleSubmit } =
+    useForm<LoginData>(
+      {
+        email: "",
+        password: "",
+      },
+      {
+        email: validateEmail,
+        password: validatePassword,
+      },
+      submitHandler
+    );
 
   return (
     <main className="container">

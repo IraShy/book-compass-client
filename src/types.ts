@@ -1,6 +1,7 @@
 export interface LoginData {
   email: string;
   password: string;
+  [key: string]: string;
 }
 
 export interface FormErrors {

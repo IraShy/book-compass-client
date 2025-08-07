@@ -17,3 +17,5 @@ export const validatePassword = (value: string): string => {
   }
   return "";
 };
+
+export const validateUsername = (): string => "";
