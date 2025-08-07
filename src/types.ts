@@ -4,6 +4,13 @@ export interface LoginData {
   [key: string]: string;
 }
 
+export interface RegisterData {
+  email: string;
+  password: string;
+  username: string;
+  [key: string]: string;
+}
+
 export interface FormErrors {
   email?: string;
   password?: string;

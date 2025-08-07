@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import Login from "./pages/Login";
 import Profile from "./components/Profile";
 import PageNotFound from "./components/404";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
