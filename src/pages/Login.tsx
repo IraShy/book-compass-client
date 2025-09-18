@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import { useForm } from "../hooks/useForm.ts";
 import { validateEmail, validatePassword } from "../utils/validation";
 import FormField from "../components/FormField.tsx";
 import PasswordField from "../components/PasswordField.tsx";
 import type { LoginData } from "../types.ts";
+import axios from "../config/axios";
 
 function Login() {
   const navigate = useNavigate();

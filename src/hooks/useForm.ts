@@ -1,5 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
+
+import axios from "../config/axios";
 
 export function useForm<T extends Record<string, string>>(
   initialData: T,

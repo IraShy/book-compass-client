@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "../config/axios";
 
 function Profile() {
   const navigate = useNavigate();
