@@ -38,52 +38,44 @@ function Register() {
 
   return (
     <>
-      <main className="container">
-        <section className="form-container">
-          <form onSubmit={handleSubmit} noValidate>
-            <h2 className="title">Sign Up</h2>
-            {errors.api && (
-              <div className="api-error-message">{errors.api}</div>
-            )}
+      <section className="form-container">
+        <form onSubmit={handleSubmit} noValidate>
+          <h2 className="title">Sign Up</h2>
+          {errors.api && <div className="api-error-message">{errors.api}</div>}
 
-            <FormField
-              label="Email"
-              name="email"
-              type="email"
-              value={formData.email}
-              error={errors.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              required
-            />
-            <FormField
-              label="Username"
-              name="username"
-              type="text"
-              value={formData.username}
-              error={errors.username}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              required={false}
-            />
-            <PasswordField
-              name="password"
-              value={formData.password}
-              error={errors.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              required
-            />
-            <button
-              type="submit"
-              className="btn w-full"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Sending..." : "Register"}
-            </button>
-          </form>
-        </section>
-      </main>
+          <FormField
+            label="Email"
+            name="email"
+            type="email"
+            value={formData.email}
+            error={errors.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            required
+          />
+          <FormField
+            label="Username"
+            name="username"
+            type="text"
+            value={formData.username}
+            error={errors.username}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            required={false}
+          />
+          <PasswordField
+            name="password"
+            value={formData.password}
+            error={errors.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            required
+          />
+          <button type="submit" className="btn w-full" disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Register"}
+          </button>
+        </form>
+      </section>
     </>
   );
 }
