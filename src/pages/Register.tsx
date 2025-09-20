@@ -2,11 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "../config/axios";
 import { useForm } from "../hooks/useForm";
-import {
-  validateEmail,
-  validatePassword,
-  validateUsername,
-} from "../utils/validation";
+import { validateEmail, validatePassword } from "../utils/validation";
 import FormField from "../components/FormField";
 import PasswordField from "../components/PasswordField";
 import type { RegisterData } from "../types";
@@ -32,7 +28,6 @@ function Register() {
       },
       {
         email: validateEmail,
-        username: validateUsername,
         password: validatePassword,
       },
       submitHandler
