@@ -10,15 +10,17 @@ import {
 import FormField from "../components/FormField";
 import PasswordField from "../components/PasswordField";
 import type { RegisterData } from "../types";
+import { useUser } from "../hooks/useUser";
+import { useState } from "react";
 
 function Register() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
 
   const submitHandler = async (data: RegisterData) => {
     const response = await axios.post("users/register", data);
-    if (response.status === 201) {
-      navigate("/profile");
-    }
+    setUser(response.data.user);
+    navigate("/profile");
   };
 
   const { formData, errors, handleChange, handleBlur, handleSubmit } =

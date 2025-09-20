@@ -5,16 +5,19 @@ import { validateEmail, validatePassword } from "../utils/validation";
 import FormField from "../components/FormField.tsx";
 import PasswordField from "../components/PasswordField.tsx";
 import type { LoginData } from "../types.ts";
+import { useUser } from "../hooks/useUser.ts";
 import axios from "../config/axios";
+import { useState } from "react";
 
 function Login() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
+
 
   const submitHandler = async (data: LoginData) => {
     const response = await axios.post("users/login", data);
-    if (response.status === 200) {
-      navigate("/profile");
-    }
+    setUser(response.data.user);
+    navigate("/profile");
   };
 
   const { formData, errors, handleChange, handleBlur, handleSubmit } =

@@ -11,12 +11,6 @@ export interface RegisterData {
   [key: string]: string;
 }
 
-export interface FormErrors {
-  email?: string;
-  password?: string;
-  api?: string;
-}
-
 export interface FormFieldProps {
   label: string;
   type: string;
@@ -35,4 +29,19 @@ export interface PasswordFieldProps {
   required: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+}
+
+export interface User {
+  id: number;
+  email: string;
+  username: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface UserContextType {
+  user: User | null;
+  setUser: (user: User | null) => void;
+  isAuthenticated: boolean;
+  isLoading: boolean;
 }
