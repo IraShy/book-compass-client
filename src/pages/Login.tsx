@@ -1,20 +1,27 @@
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import { useForm } from "../hooks/useForm.ts";
 import { validateEmail, validatePassword } from "../utils/validation";
 import FormField from "../components/FormField.tsx";
 import PasswordField from "../components/PasswordField.tsx";
 import type { LoginData } from "../types.ts";
+import { useUser } from "../hooks/useUser.ts";
+import axios from "../config/axios";
+import { useState } from "react";
 
 function Login() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitHandler = async (data: LoginData) => {
+    setIsSubmitting(true);
+
     const response = await axios.post("users/login", data);
-    if (response.status === 200) {
-      navigate("/profile");
-    }
+    setUser(response.data.user);
+    setIsSubmitting(false);
+    navigate("/profile");
   };
 
   const { formData, errors, handleChange, handleBlur, handleSubmit } =
@@ -54,8 +61,8 @@ function Login() {
             onBlur={handleBlur}
             required
           />
-          <button type="submit" className="btn w-full">
-            Login
+          <button type="submit" className="btn w-full" disabled={isSubmitting}>
+            {isSubmitting ? "Logging in..." : "Login"}
           </button>
         </form>
         <p className="text-center pt-4">

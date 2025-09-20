@@ -8,14 +8,18 @@ export const validateEmail = (value: string): string => {
   return "";
 };
 
+const MIN_PASSWORD_LENGTH = 8;
+const MAX_PASSWORD_LENGTH = 64;
+
 export const validatePassword = (value: string): string => {
   if (!value.trim()) {
     return "Password is required";
   }
-  if (value.length < 8) {
-    return "Password must be at least 8 characters long";
+  if (value.length < MIN_PASSWORD_LENGTH) {
+    return `Password must be at least ${MIN_PASSWORD_LENGTH} characters long`;
+  }
+  if (value.length > MAX_PASSWORD_LENGTH) {
+    return `Password must be no more than ${MAX_PASSWORD_LENGTH} characters long`;
   }
   return "";
 };
-
-export const validateUsername = (): string => "";

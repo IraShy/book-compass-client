@@ -1,24 +1,25 @@
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
+import axios from "../config/axios";
 import { useForm } from "../hooks/useForm";
-import {
-  validateEmail,
-  validatePassword,
-  validateUsername,
-} from "../utils/validation";
+import { validateEmail, validatePassword } from "../utils/validation";
 import FormField from "../components/FormField";
 import PasswordField from "../components/PasswordField";
 import type { RegisterData } from "../types";
+import { useUser } from "../hooks/useUser";
+import { useState } from "react";
 
 function Register() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitHandler = async (data: RegisterData) => {
+    setIsSubmitting(true);
     const response = await axios.post("users/register", data);
-    if (response.status === 201) {
-      navigate("/profile");
-    }
+    setUser(response.data.user);
+    setIsSubmitting(false);
+    navigate("/profile");
   };
 
   const { formData, errors, handleChange, handleBlur, handleSubmit } =
@@ -30,7 +31,6 @@ function Register() {
       },
       {
         email: validateEmail,
-        username: validateUsername,
         password: validatePassword,
       },
       submitHandler
@@ -74,8 +74,12 @@ function Register() {
               onBlur={handleBlur}
               required
             />
-            <button type="submit" className="btn w-full">
-              Register
+            <button
+              type="submit"
+              className="btn w-full"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Register"}
             </button>
           </form>
         </section>
