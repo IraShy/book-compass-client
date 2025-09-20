@@ -98,3 +98,132 @@ input:not(.input-error):invalid {
   color: var(--color-api-error-text);
   border-color: var(--color-error);
 }
+
+/* ***** HEADER ***** */
+
+.header {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header-container {
+  @apply max-w-7xl mx-auto px-4 flex items-center justify-between h-16 relative;
+}
+
+.logo {
+  @apply text-xl font-semibold no-underline;
+  color: var(--color-primary);
+}
+
+.logo:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Mobile menu button */
+.mobile-menu-btn {
+  @apply md:hidden p-2 rounded focus:outline-none focus:ring-2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  --tw-ring-color: var(--color-accent);
+}
+
+.hamburger {
+  @apply block w-6 h-0.5 relative;
+  background-color: var(--color-text);
+  transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  @apply absolute w-6 h-0.5 left-0;
+  background-color: var(--color-text);
+  transition: all 0.3s ease;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  top: 8px;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger.open {
+  background-color: transparent;
+}
+
+.hamburger.open::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.hamburger.open::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* Navigation */
+.nav {
+  @apply absolute md:static top-full left-0 w-full md:w-auto;
+  @apply bg-white md:bg-transparent shadow-lg md:shadow-none;
+  @apply flex-col md:flex-row items-stretch md:items-center;
+  @apply hidden md:flex gap-0 md:gap-6;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .nav {
+    border-top: none;
+  }
+}
+
+.nav.nav-open {
+  @apply flex;
+}
+
+.nav-link {
+  @apply block px-4 py-3 md:p-0 no-underline font-medium;
+  @apply border-b md:border-b-0 last:border-b-0;
+  color: var(--color-text);
+  border-color: var(--color-border);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+.nav-link-primary {
+  @apply md:px-4 md:py-2 md:rounded;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.nav-link-primary:hover {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+}
+
+.nav-button {
+  @apply block w-full text-left px-4 py-3 md:p-0 md:w-auto;
+  @apply font-medium border-b md:border-b-0;
+  background: none;
+  border: none;
+  border-color: var(--color-border);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.nav-button:hover {
+  color: var(--color-primary);
+}
