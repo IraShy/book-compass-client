@@ -59,10 +59,24 @@ export function useForm<T extends Record<string, string>>(
     try {
       await submitHandler(formData);
     } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        setApiError(error.response.data.error || error.message);
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          // Server responded with error
+          setApiError(
+            error.response.data.error || "Request failed. Please try again."
+          );
+        } else if (error.request) {
+          // Network error
+          setApiError("Network error. Please check your connection.");
+        } else {
+          // Other axios error
+          console.log(error);
+          setApiError("Something went wrong. Please try again.");
+        }
       } else {
-        setApiError("Something went wrong. Please try again");
+        // Non-axios error
+        console.log(error);
+        setApiError("Something went wrong. Please try again.");
       }
     }
   };
