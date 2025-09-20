@@ -1,25 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 
-import axios from "../config/axios";
-
 function Profile() {
-  const navigate = useNavigate();
-  const { user, setUser, isLoading } = useUser();
+  const { user, isLoading } = useUser();
 
   if (isLoading) return <div>Loading...</div>;
   if (!user) return null;
-
-  const handleLogout = async () => {
-    try {
-      await axios.post("users/logout");
-    } catch (error) {
-      console.error("Logout failed:", error);
-    } finally {
-      setUser(null);
-      navigate("/");
-    }
-  };
 
   if (user) {
     return (
@@ -27,7 +12,6 @@ function Profile() {
         <h2 className="title">Profile</h2>
 
         <div className="profile-info">
-          <h3>User Information</h3>
           <p>
             <strong>Username:</strong> {user.username}
           </p>
@@ -48,9 +32,6 @@ function Profile() {
           {/* TODO */}
           <button className="btn" disabled>
             Delete Account
-          </button>
-          <button className="btn" onClick={handleLogout}>
-            Logout
           </button>
         </div>
       </div>

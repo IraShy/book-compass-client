@@ -6,6 +6,7 @@ import PageNotFound from "./components/404";
 import Register from "./pages/Register";
 import { UserProvider } from "./contexts/UserProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Header from "./components/Header";
 
 function App() {
   return (
