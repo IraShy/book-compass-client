@@ -13,10 +13,14 @@ function Login() {
   const navigate = useNavigate();
   const { setUser } = useUser();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitHandler = async (data: LoginData) => {
+    setIsSubmitting(true);
+
     const response = await axios.post("users/login", data);
     setUser(response.data.user);
+    setIsSubmitting(false);
     navigate("/profile");
   };
 
@@ -57,8 +61,8 @@ function Login() {
             onBlur={handleBlur}
             required
           />
-          <button type="submit" className="btn w-full">
-            Login
+          <button type="submit" className="btn w-full" disabled={isSubmitting}>
+            {isSubmitting ? "Logging in..." : "Login"}
           </button>
         </form>
         <p className="text-center pt-4">

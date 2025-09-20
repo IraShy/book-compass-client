@@ -12,10 +12,13 @@ import { useState } from "react";
 function Register() {
   const navigate = useNavigate();
   const { setUser } = useUser();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitHandler = async (data: RegisterData) => {
+    setIsSubmitting(true);
     const response = await axios.post("users/register", data);
     setUser(response.data.user);
+    setIsSubmitting(false);
     navigate("/profile");
   };
 
@@ -71,8 +74,12 @@ function Register() {
               onBlur={handleBlur}
               required
             />
-            <button type="submit" className="btn w-full">
-              Register
+            <button
+              type="submit"
+              className="btn w-full"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Register"}
             </button>
           </form>
         </section>
