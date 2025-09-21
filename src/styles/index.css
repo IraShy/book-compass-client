@@ -8,10 +8,12 @@
 body {
   margin: 0;
   padding: 0;
+  /* background-color: #b0b4db77; */
+  background: linear-gradient(135deg, #b0b4db33, #b0b4db77);
 }
 
 .container {
-  @apply min-h-screen flex flex-col items-center p-8;
+  @apply min-h-screen flex flex-col items-center p-8 mx-auto max-w-7xl;
   background-color: var(--color-secondary);
 }
 
@@ -102,15 +104,13 @@ input:not(.input-error):invalid {
 /* ***** HEADER ***** */
 
 .header {
+  @apply border-b sticky z-50 max-w-7xl mx-auto w-full;
+  border-color: var(--color-border);
   background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-border);
-  position: sticky;
-  top: 0;
-  z-index: 50;
 }
 
 .header-container {
-  @apply max-w-7xl mx-auto px-4 flex items-center justify-between h-16 relative;
+  @apply px-4 flex items-center justify-between h-16 relative;
 }
 
 .logo {
@@ -124,10 +124,8 @@ input:not(.input-error):invalid {
 
 /* Mobile menu button */
 .mobile-menu-btn {
-  @apply md:hidden p-2 rounded focus:outline-none focus:ring-2;
-  background: none;
-  border: none;
-  cursor: pointer;
+  @apply md:hidden p-2 rounded focus:outline-none focus:ring-2 bg-transparent border-0 cursor-pointer;
+
   --tw-ring-color: var(--color-accent);
 }
 
@@ -214,12 +212,10 @@ input:not(.input-error):invalid {
 }
 
 .nav-button {
-  @apply block w-full text-left px-4 py-3 md:p-0 md:w-auto;
+  @apply block w-full text-left px-4 py-3 md:p-0 md:w-auto bg-transparent cursor-pointer;
   @apply font-medium border-b md:border-b-0;
-  background: none;
   border-color: var(--color-border);
   color: var(--color-text);
-  cursor: pointer;
   transition: color 0.2s ease;
 }
 
@@ -237,11 +233,8 @@ input:not(.input-error):invalid {
 }
 
 .modal-content {
-  @apply max-w-md w-full mx-4 rounded-lg shadow-lg;
+  @apply max-w-md w-full mx-4 rounded-lg shadow-lg max-h-[90vh] overflow-y-auto relative;
   background-color: var(--color-white);
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
   animation: modalSlideIn 0.2s ease-out;
 }
 
@@ -256,13 +249,8 @@ input:not(.input-error):invalid {
 }
 
 .modal-close {
-  @apply p-2 rounded hover:bg-gray-100 focus:outline-none focus:ring-2;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
+  @apply p-2 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 bg-transparent border-0 text-2xl cursor-pointer leading-none;
   color: var(--color-text);
-  cursor: pointer;
-  line-height: 1;
   --tw-ring-color: var(--color-accent);
 }
 
@@ -271,8 +259,7 @@ input:not(.input-error):invalid {
 }
 
 .modal-body .form-container {
-  @apply p-0 shadow-none;
-  background: transparent;
+  @apply p-0 shadow-none bg-transparent;
 }
 
 @keyframes modalSlideIn {
