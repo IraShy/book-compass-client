@@ -5,6 +5,7 @@ function FormField({
   type,
   name,
   value,
+  placeholder,
   error,
   required,
   onChange,
@@ -20,6 +21,7 @@ function FormField({
         id={name}
         name={name}
         value={value}
+        placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
         className={`input ${error ? "input-error" : ""}`}

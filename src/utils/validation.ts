@@ -23,3 +23,7 @@ export const validatePassword = (value: string): string => {
   }
   return "";
 };
+
+export const validatePresence = (value: string, fieldName: string): string => {
+  return value.trim() ? "" : `${fieldName} is required`;
+};
