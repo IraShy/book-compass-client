@@ -217,7 +217,6 @@ input:not(.input-error):invalid {
   @apply block w-full text-left px-4 py-3 md:p-0 md:w-auto;
   @apply font-medium border-b md:border-b-0;
   background: none;
-  border: none;
   border-color: var(--color-border);
   color: var(--color-text);
   cursor: pointer;
@@ -226,4 +225,74 @@ input:not(.input-error):invalid {
 
 .nav-button:hover {
   color: var(--color-primary);
+}
+
+/* ***** MODAL ***** */
+
+.modal-overlay {
+  @apply fixed inset-0 flex items-center justify-center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  @apply max-w-md w-full mx-4 rounded-lg shadow-lg;
+  background-color: var(--color-white);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalSlideIn 0.2s ease-out;
+}
+
+.modal-header {
+  @apply p-6 pb-4 flex items-center justify-between;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal-title {
+  @apply text-xl font-medium m-0;
+  color: var(--color-primary);
+}
+
+.modal-close {
+  @apply p-2 rounded hover:bg-gray-100 focus:outline-none focus:ring-2;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-text);
+  cursor: pointer;
+  line-height: 1;
+  --tw-ring-color: var(--color-accent);
+}
+
+.modal-body {
+  @apply p-6;
+}
+
+.modal-body .form-container {
+  @apply p-0 shadow-none;
+  background: transparent;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .modal-content {
+    @apply mx-2 max-h-[95vh];
+  }
+
+  .modal-header,
+  .modal-body {
+    @apply p-4;
+  }
 }
