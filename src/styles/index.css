@@ -296,3 +296,22 @@ input:not(.input-error):invalid {
     @apply p-4;
   }
 }
+
+/* ***** BOOK PAGE ***** */
+
+.text-container {
+  @apply max-w-3xl mx-auto;
+}
+
+.authors {
+  @apply text-lg  mb-4 font-bold;
+  color: var(--color-primary-dark);
+}
+
+.description {
+  @apply mb-6;
+}
+
+.book-info .description h3 {
+  @apply font-semibold pb-4;
+}
