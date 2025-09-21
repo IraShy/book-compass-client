@@ -47,6 +47,13 @@ export interface UserContextType {
   isLoading: boolean;
 }
 
+export interface Book {
+  id: number;
+  title: string;
+  authors: string[];
+  description: string;
+}
+
 export interface BookSearchData {
   title: string;
   authors: string;

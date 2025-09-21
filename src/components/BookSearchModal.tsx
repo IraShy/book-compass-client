@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import FormField from "./FormField";
@@ -20,7 +20,7 @@ function BookSearchModal({ isOpen, onClose }: BookSearchModalProps) {
     const response = await axios.get("books/find", { params: data });
     console.log(response);
     onClose();
-    // navigate(`/`);
+    navigate(`/book`, { state: { book: response.data.book } });
   };
 
   const { formData, errors, handleChange, handleBlur, handleSubmit } =
