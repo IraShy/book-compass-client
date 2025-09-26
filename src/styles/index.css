@@ -92,7 +92,7 @@ input:not(.input-error):invalid {
 
 /* Field errors (below the input) */
 .field-error-message {
-  @apply text-sm block mt-1;
+  @apply text-sm block pt-1;
   color: var(--color-error);
 }
 
