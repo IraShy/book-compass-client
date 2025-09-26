@@ -14,7 +14,8 @@ function PasswordField({
   return (
     <div className="mb-4">
       <label htmlFor={name} className="label">
-        Password (required):
+        Password
+        {required && <span className="label-required"> (required)</span>}:
       </label>
       <div className="password-input-wrapper">
         <input
