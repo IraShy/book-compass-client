@@ -17,7 +17,8 @@ function FormField({
   return (
     <div className="mb-4">
       <label htmlFor={name} className="label">
-        {label}:
+        {label}
+        {required && <span className="label-required"> (required)</span>}:
       </label>
       <input
         type={type}
@@ -25,6 +26,8 @@ function FormField({
         name={name}
         value={value}
         placeholder={placeholder}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${name}-error` : undefined}
         onChange={onChange}
         onBlur={onBlur}
         className={`input ${error ? "input-error" : ""}`}
@@ -46,7 +49,11 @@ function FormField({
 
       <div className="min-h-6">
         {error && (
-          <span className="field-error-message" aria-live="polite">
+          <span
+            className="field-error-message"
+            aria-live="polite"
+            id={error ? `${name}-error` : undefined}
+          >
             {error}
           </span>
         )}
