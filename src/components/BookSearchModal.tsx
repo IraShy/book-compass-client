@@ -80,6 +80,10 @@ function BookSearchModal({ isOpen, closeModal }: BookSearchModalProps) {
         <div className="modal-body">
           <section className="form-container">
             <form onSubmit={handleSubmit} noValidate>
+              {errors.api && (
+                <div className="api-error-message">{errors.api}</div>
+              )}
+
               <FormField
                 label="Book Title"
                 type="text"
@@ -94,7 +98,7 @@ function BookSearchModal({ isOpen, closeModal }: BookSearchModalProps) {
                 label="Authors"
                 type="text"
                 name="authors"
-                placeholder='e.g. "Peter Straub, Stephen King"'
+                placeholder="e.g. Peter Straub, Stephen King"
                 value={formData.authors}
                 error={errors.authors}
                 onChange={handleChange}
