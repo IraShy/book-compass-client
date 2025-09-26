@@ -6,6 +6,9 @@ function FormField({
   name,
   value,
   placeholder,
+  helptext,
+  showHelp,
+  onToggleHelp,
   error,
   required,
   onChange,
@@ -27,6 +30,20 @@ function FormField({
         className={`input ${error ? "input-error" : ""}`}
         required={required}
       />
+      {helptext && (
+        <div className="flex items-center gap-2 mt-1">
+          <button
+            type="button"
+            className="info-button"
+            onClick={onToggleHelp}
+            aria-label={`${showHelp ? "Hide" : "Show"} help for ${label}`}
+          >
+            i
+          </button>
+          {showHelp && <p className="field-help">{helptext}</p>}
+        </div>
+      )}
+
       <div className="min-h-6">
         {error && (
           <span className="field-error-message" aria-live="polite">

@@ -17,6 +17,9 @@ export interface FormFieldProps {
   name: string;
   value: string;
   placeholder?: string;
+  helptext?: string;
+  showHelp?: boolean;
+  onToggleHelp?: () => void;
   error?: string;
   required: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

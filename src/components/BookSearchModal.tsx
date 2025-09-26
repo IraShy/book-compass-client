@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 
 import FormField from "./FormField";
@@ -9,6 +10,8 @@ import axios from "../config/axios";
 
 function BookSearchModal({ isOpen, closeModal }: BookSearchModalProps) {
   const navigate = useNavigate();
+
+  const [showHelp, setShowHelp] = useState(false);
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -63,6 +66,7 @@ function BookSearchModal({ isOpen, closeModal }: BookSearchModalProps) {
   useEffect(() => {
     if (!isOpen) {
       resetForm();
+      setShowHelp(false);
     }
   }, [isOpen, resetForm]);
 
@@ -99,6 +103,9 @@ function BookSearchModal({ isOpen, closeModal }: BookSearchModalProps) {
                 type="text"
                 name="authors"
                 placeholder="e.g. Peter Straub, Stephen King"
+                helptext="Separate multiple authors with commas"
+                showHelp={showHelp}
+                onToggleHelp={() => setShowHelp(!showHelp)}
                 value={formData.authors}
                 error={errors.authors}
                 onChange={handleChange}
