@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import axios from "../config/axios";
 
@@ -7,6 +7,7 @@ export function useForm<T extends Record<string, string>>(
   validationRules: Record<keyof T, (value: string) => string>,
   submitHandler: (data: T) => Promise<void>
 ) {
+  const initialDataRef = useRef(initialData);
   const [formData, setFormData] = useState<T>(initialData);
   const [errors, setErrors] = useState<
     Partial<Record<keyof T | "api", string>>
@@ -81,6 +82,11 @@ export function useForm<T extends Record<string, string>>(
     }
   };
 
+  const resetForm = useCallback(() => {
+    setFormData(initialDataRef.current);
+    setErrors({});
+  }, []);
+
   return {
     formData,
     errors,
@@ -89,5 +95,6 @@ export function useForm<T extends Record<string, string>>(
     validateForm,
     setApiError,
     handleSubmit,
+    resetForm,
   };
 }

@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import { UserProvider } from "./contexts/UserProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Header from "./components/Header";
+import BookPage from "./pages/BookPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="/book" element={<BookPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>

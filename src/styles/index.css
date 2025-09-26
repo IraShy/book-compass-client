@@ -8,10 +8,11 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #3a5a4491;
 }
 
 .container {
-  @apply min-h-screen flex flex-col items-center p-8;
+  @apply min-h-screen flex flex-col items-center p-8 mx-auto max-w-6xl;
   background-color: var(--color-secondary);
 }
 
@@ -39,6 +40,10 @@ body {
 .label {
   @apply block mb-2 font-medium;
   color: var(--color-text);
+}
+
+.label-required {
+  @apply text-sm opacity-80;
 }
 
 .input {
@@ -87,7 +92,7 @@ input:not(.input-error):invalid {
 
 /* Field errors (below the input) */
 .field-error-message {
-  @apply text-sm block;
+  @apply text-sm block pt-1;
   color: var(--color-error);
 }
 
@@ -102,15 +107,13 @@ input:not(.input-error):invalid {
 /* ***** HEADER ***** */
 
 .header {
+  @apply border-b sticky z-50 max-w-6xl mx-auto w-full;
+  border-color: var(--color-border);
   background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-border);
-  position: sticky;
-  top: 0;
-  z-index: 50;
 }
 
 .header-container {
-  @apply max-w-7xl mx-auto px-4 flex items-center justify-between h-16 relative;
+  @apply px-4 flex items-center justify-between h-16 relative;
 }
 
 .logo {
@@ -124,10 +127,8 @@ input:not(.input-error):invalid {
 
 /* Mobile menu button */
 .mobile-menu-btn {
-  @apply md:hidden p-2 rounded focus:outline-none focus:ring-2;
-  background: none;
-  border: none;
-  cursor: pointer;
+  @apply md:hidden p-2 rounded focus:outline-none focus:ring-2 bg-transparent border-0 cursor-pointer;
+
   --tw-ring-color: var(--color-accent);
 }
 
@@ -214,16 +215,118 @@ input:not(.input-error):invalid {
 }
 
 .nav-button {
-  @apply block w-full text-left px-4 py-3 md:p-0 md:w-auto;
+  @apply block w-full text-left px-4 py-3 md:p-0 md:w-auto bg-transparent cursor-pointer;
   @apply font-medium border-b md:border-b-0;
-  background: none;
-  border: none;
   border-color: var(--color-border);
   color: var(--color-text);
-  cursor: pointer;
   transition: color 0.2s ease;
 }
 
 .nav-button:hover {
   color: var(--color-primary);
+}
+
+/* ***** MODAL ***** */
+
+.modal-overlay {
+  @apply fixed inset-0 flex items-center justify-center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  @apply max-w-md w-full mx-4 rounded-lg shadow-lg max-h-[90vh] overflow-y-auto relative;
+  background-color: var(--color-white);
+  animation: modalSlideIn 0.2s ease-out;
+}
+
+.modal-header {
+  @apply p-6 pb-4 flex items-center justify-between;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal-title {
+  @apply text-xl font-medium m-0;
+  color: var(--color-primary);
+}
+
+.modal-close {
+  @apply p-2 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 bg-transparent border-0 text-2xl cursor-pointer leading-none;
+  color: var(--color-text);
+  --tw-ring-color: var(--color-accent);
+}
+
+.modal-body {
+  @apply p-6;
+}
+
+.modal-body .form-container {
+  @apply p-0 shadow-none bg-transparent;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .modal-content {
+    @apply mx-2 max-h-[95vh];
+  }
+
+  .modal-header,
+  .modal-body {
+    @apply p-4;
+  }
+}
+
+/* Info block */
+.info-container {
+  @apply flex items-center gap-2 mt-1;
+}
+.info-button {
+  @apply w-5 h-5 text-xs font-bold rounded-full cursor-pointer border-0 ml-2;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transition: background-color 0.2s ease;
+}
+
+.info-button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.info-button:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.field-help {
+  @apply text-sm italic m-0 leading-1;
+  color: var(--color-primary-dark);
+}
+
+/* ***** BOOK PAGE ***** */
+
+.text-container {
+  @apply max-w-3xl mx-auto;
+}
+
+.authors {
+  @apply text-lg  mb-4 font-bold;
+  color: var(--color-primary-dark);
+}
+
+.description {
+  @apply mb-6;
+}
+
+.book-info .description h3 {
+  @apply font-semibold pb-4;
 }

@@ -14,7 +14,8 @@ function PasswordField({
   return (
     <div className="mb-4">
       <label htmlFor={name} className="label">
-        Password:
+        Password
+        {required && <span className="label-required"> (required)</span>}:
       </label>
       <div className="password-input-wrapper">
         <input
@@ -22,6 +23,8 @@ function PasswordField({
           id={name}
           name={name}
           value={value}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${name}-error` : undefined}
           onChange={onChange}
           onBlur={onBlur}
           className={`input ${error ? "input-error" : ""}`}
@@ -46,7 +49,11 @@ function PasswordField({
       </div>
       <div className="min-h-6">
         {error && (
-          <span className="field-error-message" aria-live="polite">
+          <span
+            className="field-error-message"
+            aria-live="polite"
+            id={error ? `${name}-error` : undefined}
+          >
             {error}
           </span>
         )}

@@ -16,6 +16,10 @@ export interface FormFieldProps {
   type: string;
   name: string;
   value: string;
+  placeholder?: string;
+  helptext?: string;
+  showHelp?: boolean;
+  onToggleHelp?: () => void;
   error?: string;
   required: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -44,4 +48,22 @@ export interface UserContextType {
   setUser: (user: User | null) => void;
   isAuthenticated: boolean;
   isLoading: boolean;
+}
+
+export interface Book {
+  id: number;
+  title: string;
+  authors: string[];
+  description: string;
+}
+
+export interface BookSearchData {
+  title: string;
+  authors: string;
+  [key: string]: string;
+}
+
+export interface BookSearchModalProps {
+  isOpen: boolean;
+  closeModal: () => void;
 }
