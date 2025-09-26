@@ -52,7 +52,7 @@ function Header() {
 
                 <button
                   className="nav-button"
-                  onClick={() => setIsSearchOpen(!isSearchOpen)}
+                  onClick={() => setIsSearchOpen(true)}
                 >
                   Book Search
                 </button>
@@ -83,7 +83,7 @@ function Header() {
       </header>
       <BookSearchModal
         isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
+        closeModal={() => setIsSearchOpen(false)}
       />
     </>
   );

@@ -7,19 +7,19 @@ import type { BookSearchData, BookSearchModalProps } from "../types";
 import { useForm } from "../hooks/useForm";
 import axios from "../config/axios";
 
-function BookSearchModal({ isOpen, onClose }: BookSearchModalProps) {
+function BookSearchModal({ isOpen, closeModal }: BookSearchModalProps) {
   const navigate = useNavigate();
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
-      onClose();
+      closeModal();
     }
   };
 
   const submitHandler = async (data: BookSearchData) => {
     const response = await axios.get("books/find", { params: data });
     console.log(response);
-    onClose();
+    closeModal();
     navigate(`/book`, { state: { book: response.data.book } });
   };
 
@@ -47,7 +47,7 @@ function BookSearchModal({ isOpen, onClose }: BookSearchModalProps) {
 
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        onClose();
+        closeModal();
       }
     };
 
@@ -58,7 +58,8 @@ function BookSearchModal({ isOpen, onClose }: BookSearchModalProps) {
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "unset";
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, closeModal]);
+
   useEffect(() => {
     if (!isOpen) {
       resetForm();
@@ -69,10 +70,10 @@ function BookSearchModal({ isOpen, onClose }: BookSearchModalProps) {
 
   return (
     <div className="modal-overlay" onClick={handleOverlayClick}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-content">
         <div className="modal-header">
           <h2 className="modal-title">Search Books</h2>
-          <button className="modal-close" onClick={onClose}>
+          <button className="modal-close" onClick={closeModal}>
             ×
           </button>
         </div>

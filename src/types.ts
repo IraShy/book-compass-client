@@ -62,5 +62,5 @@ export interface BookSearchData {
 
 export interface BookSearchModalProps {
   isOpen: boolean;
-  onClose: () => void;
+  closeModal: () => void;
 }
