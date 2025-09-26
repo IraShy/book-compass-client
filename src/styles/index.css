@@ -8,12 +8,11 @@
 body {
   margin: 0;
   padding: 0;
-  /* background-color: #b0b4db77; */
-  background: linear-gradient(135deg, #b0b4db33, #b0b4db77);
+  background-color: #3a5a4491;
 }
 
 .container {
-  @apply min-h-screen flex flex-col items-center p-8 mx-auto max-w-7xl;
+  @apply min-h-screen flex flex-col items-center p-8 mx-auto max-w-6xl;
   background-color: var(--color-secondary);
 }
 
@@ -108,7 +107,7 @@ input:not(.input-error):invalid {
 /* ***** HEADER ***** */
 
 .header {
-  @apply border-b sticky z-50 max-w-7xl mx-auto w-full;
+  @apply border-b sticky z-50 max-w-6xl mx-auto w-full;
   border-color: var(--color-border);
   background-color: var(--color-white);
 }
