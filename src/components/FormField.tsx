@@ -34,7 +34,7 @@ function FormField({
         required={required}
       />
       {helptext && (
-        <div className="flex items-center gap-2 mt-1">
+        <div className="info-container">
           <button
             type="button"
             className="info-button"

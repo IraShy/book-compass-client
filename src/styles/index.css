@@ -43,6 +43,10 @@ body {
   color: var(--color-text);
 }
 
+.label-required {
+  @apply text-sm opacity-80;
+}
+
 .input {
   @apply w-full p-3 border-2 rounded focus:outline-none focus:ring-1;
   border-color: var(--color-border);
@@ -89,7 +93,7 @@ input:not(.input-error):invalid {
 
 /* Field errors (below the input) */
 .field-error-message {
-  @apply text-sm block;
+  @apply text-sm block mt-1;
   color: var(--color-error);
 }
 
@@ -282,6 +286,31 @@ input:not(.input-error):invalid {
   .modal-body {
     @apply p-4;
   }
+}
+
+/* Info block */
+.info-container {
+  @apply flex items-center gap-2 mt-1;
+}
+.info-button {
+  @apply w-5 h-5 text-xs font-bold rounded-full cursor-pointer border-0 ml-2;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transition: background-color 0.2s ease;
+}
+
+.info-button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.info-button:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.field-help {
+  @apply text-sm italic m-0 leading-1;
+  color: var(--color-primary-dark);
 }
 
 /* ***** BOOK PAGE ***** */
