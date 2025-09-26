@@ -23,18 +23,24 @@ function BookSearchModal({ isOpen, onClose }: BookSearchModalProps) {
     navigate(`/book`, { state: { book: response.data.book } });
   };
 
-  const { formData, errors, handleChange, handleBlur, handleSubmit } =
-    useForm<BookSearchData>(
-      {
-        title: "",
-        authors: "",
-      },
-      {
-        title: (value) => validatePresence(value, "Title"),
-        authors: (value) => validatePresence(value, "Authors"),
-      },
-      submitHandler
-    );
+  const {
+    formData,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    resetForm,
+  } = useForm<BookSearchData>(
+    {
+      title: "",
+      authors: "",
+    },
+    {
+      title: (value) => validatePresence(value, "Title"),
+      authors: (value) => validatePresence(value, "Authors"),
+    },
+    submitHandler
+  );
 
   useEffect(() => {
     if (!isOpen) return;
@@ -53,6 +59,11 @@ function BookSearchModal({ isOpen, onClose }: BookSearchModalProps) {
       document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
+  useEffect(() => {
+    if (!isOpen) {
+      resetForm();
+    }
+  }, [isOpen, resetForm]);
 
   if (!isOpen) return null;
 
