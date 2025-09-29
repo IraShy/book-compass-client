@@ -1,13 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
-
-import { useForm } from "../hooks/useForm.ts";
-import { validateEmail, validatePassword } from "../utils/validation";
-import FormField from "../components/FormField.tsx";
-import PasswordField from "../components/PasswordField.tsx";
-import type { LoginData } from "../types.ts";
-import { useUser } from "../hooks/useUser.ts";
-import axios from "../config/axios";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../config/axios";
+
+import type { LoginData } from "../types.ts";
+import { validateEmail, validatePassword } from "../utils/validation";
+import { useForm } from "../hooks/useForm.ts";
+import { useUser } from "../hooks/useUser.ts";
+import FormField from "../components/FormField.tsx";
 
 function Login() {
   const navigate = useNavigate();
@@ -52,12 +51,15 @@ function Login() {
           onBlur={handleBlur}
           required
         />
-        <PasswordField
+        <FormField
+          label="Password"
+          type="password"
           name="password"
           value={formData.password}
           error={errors.password}
           onChange={handleChange}
           onBlur={handleBlur}
+          showPasswordToggle={true}
           required
         />
         <button type="submit" className="btn w-full" disabled={isSubmitting}>

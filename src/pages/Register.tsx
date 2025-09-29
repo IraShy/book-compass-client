@@ -1,13 +1,12 @@
-import { useNavigate } from "react-router-dom";
-
-import axios from "../config/axios";
-import { useForm } from "../hooks/useForm";
-import { validateEmail, validatePassword } from "../utils/validation";
-import FormField from "../components/FormField";
-import PasswordField from "../components/PasswordField";
-import type { RegisterData } from "../types";
-import { useUser } from "../hooks/useUser";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../config/axios";
+
+import type { RegisterData } from "../types";
+import { validateEmail, validatePassword } from "../utils/validation";
+import { useForm } from "../hooks/useForm";
+import { useUser } from "../hooks/useUser";
+import FormField from "../components/FormField";
 
 function Register() {
   const navigate = useNavigate();
@@ -63,12 +62,16 @@ function Register() {
             onBlur={handleBlur}
             required={false}
           />
-          <PasswordField
+          <FormField
+            label="Password"
+            type="password"
             name="password"
             value={formData.password}
+            helptext="Password must be between 8 and 64 characters long"
             error={errors.password}
             onChange={handleChange}
             onBlur={handleBlur}
+            showPasswordToggle={true}
             required
           />
           <button type="submit" className="btn w-full" disabled={isSubmitting}>

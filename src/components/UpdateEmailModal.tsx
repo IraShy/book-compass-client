@@ -7,7 +7,6 @@ import type { BaseModalProps, User } from "../types";
 import { validateEmail, validatePassword } from "../utils/validation";
 import Modal from "./Modal";
 import FormField from "./FormField";
-import PasswordField from "./PasswordField";
 function UpdateEmailModal({ isOpen, closeModal }: BaseModalProps) {
   const { setUser } = useUser();
 
@@ -55,7 +54,6 @@ function UpdateEmailModal({ isOpen, closeModal }: BaseModalProps) {
               {errors.api}
             </div>
           )}
-
           <FormField
             label="New Email"
             type="email"
@@ -66,12 +64,16 @@ function UpdateEmailModal({ isOpen, closeModal }: BaseModalProps) {
             onBlur={handleBlur}
             required
           />
-          <PasswordField
+          <FormField
+            label="Password"
+            type="password"
             name="password"
             value={formData.password}
+            helptext="Enter your current password"
             error={errors.password}
             onChange={handleChange}
             onBlur={handleBlur}
+            showPasswordToggle={true}
             required
           />
           <button

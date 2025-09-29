@@ -18,21 +18,11 @@ export interface FormFieldProps {
   value: string;
   placeholder?: string;
   helptext?: string;
-  showHelp?: boolean;
-  onToggleHelp?: () => void;
   error?: string;
   required: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-}
-
-export interface PasswordFieldProps {
-  name: string;
-  value: string;
-  error?: string;
-  required: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  showPasswordToggle?: boolean;
 }
 
 export interface User {

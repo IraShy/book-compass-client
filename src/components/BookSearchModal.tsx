@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import axios from "../config/axios";
@@ -11,8 +11,6 @@ import Modal from "./Modal";
 
 function BookSearchModal({ isOpen, closeModal }: BaseModalProps) {
   const navigate = useNavigate();
-
-  const [showHelp, setShowHelp] = useState(false);
 
   const submitHandler = async (data: BookSearchData) => {
     const response = await axios.get("books/find", { params: data });
@@ -43,7 +41,6 @@ function BookSearchModal({ isOpen, closeModal }: BaseModalProps) {
   useEffect(() => {
     if (!isOpen) {
       resetForm();
-      setShowHelp(false);
     }
   }, [isOpen, resetForm]);
 
@@ -71,8 +68,6 @@ function BookSearchModal({ isOpen, closeModal }: BaseModalProps) {
             name="authors"
             placeholder="e.g. Peter Straub, Stephen King"
             helptext="Separate multiple authors with commas"
-            showHelp={showHelp}
-            onToggleHelp={() => setShowHelp(!showHelp)}
             value={formData.authors}
             error={errors.authors}
             onChange={handleChange}
