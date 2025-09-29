@@ -289,13 +289,16 @@ input:not(.input-error):invalid {
 
 /* Info block */
 .info-container {
-  @apply flex items-center gap-2 mt-1;
+  @apply flex items-start gap-2 mt-1;
 }
 .info-button {
-  @apply w-5 h-5 text-xs font-bold rounded-full cursor-pointer border-0 ml-2;
+  @apply w-5 h-5 text-xs font-bold rounded-full cursor-pointer border-0 flex-shrink-0;
   background-color: var(--color-primary);
   color: var(--color-white);
   transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .info-button:hover {
@@ -308,8 +311,9 @@ input:not(.input-error):invalid {
 }
 
 .field-help {
-  @apply text-sm italic m-0 leading-1;
+  @apply text-sm italic m-0 leading-normal;
   color: var(--color-primary-dark);
+  flex: 1;
 }
 
 /* ***** BOOK PAGE ***** */
