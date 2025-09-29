@@ -63,7 +63,14 @@ export interface BookSearchData {
   [key: string]: string;
 }
 
-export interface BookSearchModalProps {
+export interface ModalProps {
+  isOpen: boolean;
+  closeModal: () => void;
+  title: string;
+  children: React.ReactNode;
+}
+
+export interface BaseModalProps {
   isOpen: boolean;
   closeModal: () => void;
 }
