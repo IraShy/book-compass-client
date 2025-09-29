@@ -331,24 +331,18 @@ input:not(.input-error):invalid {
   @apply font-semibold pb-4;
 }
 
-/* ***** PROFILE UPDATE MODALS ***** */
+/* ***** PROFILE ***** */
+
+.profile-info p {
+  line-height: 1.8;
+}
 
 .profile-field {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  @apply flex items-center gap-3;
 }
 
 .edit-btn {
-  padding: 0.25rem;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  border-radius: 0.25rem;
-  transition: background-color 0.2s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  @apply p-1 border-0 bg-transparent cursor-pointer rounded transition-colors duration-200 inline-flex items-center justify-center;
 }
 
 .edit-btn svg {

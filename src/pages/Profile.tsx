@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useUser } from "../hooks/useUser";
 import UpdateUsernameModal from "../components/UpdateUsernameModal";
+import UpdateEmailModal from "../components/UpdateEmailModal";
 
 function Profile() {
   const { user, isLoading } = useUser();
   const [isUsernameOpen, setIsUsernameOpen] = useState(false);
+  const [isEmailOpen, setIsEmailOpen] = useState(false);
 
   if (isLoading) return <div>Loading...</div>;
   if (!user) return null;
@@ -34,8 +36,24 @@ function Profile() {
               </svg>
             </button>
           </p>
-          <p>
+          <p className="profile-field">
             <strong>Email:</strong> {user.email}
+            <button
+              className="edit-btn"
+              onClick={() => setIsEmailOpen(true)}
+              aria-label="Edit email"
+              title="Edit email"
+              type="button"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+              </svg>
+            </button>
           </p>
           <p>
             <strong>Member since:</strong>{" "}
@@ -57,6 +75,10 @@ function Profile() {
         <UpdateUsernameModal
           isOpen={isUsernameOpen}
           closeModal={() => setIsUsernameOpen(false)}
+        />
+        <UpdateEmailModal
+          isOpen={isEmailOpen}
+          closeModal={() => setIsEmailOpen(false)}
         />
       </div>
     );
