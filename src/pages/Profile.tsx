@@ -59,17 +59,11 @@ function Profile() {
             <strong>Member since:</strong>{" "}
             {new Date(user.created_at).toLocaleDateString()}
           </p>
-        </div>
-
-        <div className="profile-actions">
-          {/* TODO */}
-          <button className="btn" disabled>
-            Edit Profile
-          </button>
-          {/* TODO */}
-          <button className="btn" disabled>
-            Delete Account
-          </button>
+          <div className="profile-actions">
+            <button className="btn-slim">Change Password</button>
+            {/* TODO */}
+            <button className="btn-slim btn-danger">Delete Account</button>
+          </div>
         </div>
 
         <UpdateUsernameModal

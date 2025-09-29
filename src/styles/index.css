@@ -366,3 +366,30 @@ input:not(.input-error):invalid {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
+
+.profile-actions {
+  @apply flex flex-col sm:flex-row gap-3 mt-6;
+}
+
+.btn-slim {
+  @apply w-full sm:w-auto px-4 py-2 text-sm rounded transition-colors duration-200 border-2;
+  background-color: var(--color-white);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.btn-slim:hover {
+  background-color: var(--color-secondary);
+  border-color: var(--color-primary-dark);
+}
+
+.btn-slim.btn-danger {
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.btn-slim.btn-danger:hover {
+  background-color: var(--color-error);
+  color: var(--color-white);
+  text-shadow: 0 0 1px currentColor;
+}
