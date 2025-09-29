@@ -5,8 +5,10 @@ import UpdateEmailModal from "../components/UpdateEmailModal";
 
 function Profile() {
   const { user, isLoading } = useUser();
-  const [isUsernameOpen, setIsUsernameOpen] = useState(false);
-  const [isEmailOpen, setIsEmailOpen] = useState(false);
+
+  const [activeModal, setActiveModal] = useState<
+    "username" | "email" | "password" | null
+  >(null);
 
   if (isLoading) return <div>Loading...</div>;
   if (!user) return null;
@@ -21,7 +23,7 @@ function Profile() {
             <strong>Username:</strong> {user.username}
             <button
               className="edit-btn"
-              onClick={() => setIsUsernameOpen(true)}
+              onClick={() => setActiveModal("username")}
               aria-label="Edit username"
               title="Edit username"
               type="button"
@@ -40,7 +42,7 @@ function Profile() {
             <strong>Email:</strong> {user.email}
             <button
               className="edit-btn"
-              onClick={() => setIsEmailOpen(true)}
+              onClick={() => setActiveModal("email")}
               aria-label="Edit email"
               title="Edit email"
               type="button"
@@ -60,19 +62,24 @@ function Profile() {
             {new Date(user.created_at).toLocaleDateString()}
           </p>
           <div className="profile-actions">
-            <button className="btn-slim">Change Password</button>
+            <button
+              className="btn-slim"
+              onClick={() => setActiveModal("password")}
+            >
+              Change Password
+            </button>
             {/* TODO */}
             <button className="btn-slim btn-danger">Delete Account</button>
           </div>
         </div>
 
         <UpdateUsernameModal
-          isOpen={isUsernameOpen}
-          closeModal={() => setIsUsernameOpen(false)}
+          isOpen={activeModal === "username"}
+          closeModal={() => setActiveModal(null)}
         />
         <UpdateEmailModal
-          isOpen={isEmailOpen}
-          closeModal={() => setIsEmailOpen(false)}
+          isOpen={activeModal === "email"}
+          closeModal={() => setActiveModal(null)}
         />
       </div>
     );
