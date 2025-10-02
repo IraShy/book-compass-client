@@ -54,6 +54,10 @@ function UpdatePasswordlModal({ isOpen, closeModal }: BaseModalProps) {
         errors.confirmPassword = "Passwords don't match";
       }
       return errors;
+    },
+    {
+      debounceDelay: 300,
+      triggerFields: ["currentPassword", "newPassword", "confirmPassword"],
     }
   );
 
