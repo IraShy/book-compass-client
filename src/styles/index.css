@@ -21,15 +21,6 @@ body {
   color: var(--color-primary);
 }
 
-.btn {
-  @apply p-3 mt-6 text-white rounded transition-colors duration-200;
-  background-color: var(--color-primary);
-
-  &:hover {
-    background-color: var(--color-primary-dark);
-  }
-}
-
 /* ***** FORMS ***** */
 
 .form-container {
@@ -345,30 +336,19 @@ input:not(.input-error):invalid {
   @apply flex items-center gap-3;
 }
 
-.edit-btn {
-  @apply p-1 border-0 bg-transparent cursor-pointer rounded transition-colors duration-200 inline-flex items-center justify-center;
-}
-
-.edit-btn svg {
-  color: var(--color-primary-dark);
-  transition: color 0.2s;
-}
-
-.edit-btn:hover {
-  background-color: var(--color-border);
-}
-
-.edit-btn:hover svg {
-  color: var(--color-text);
-}
-
-.edit-btn:focus {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
 .profile-actions {
   @apply flex flex-col sm:flex-row gap-3 mt-6;
+}
+
+/* ***** BUTTONS ***** */
+
+.btn {
+  @apply p-3 mt-6 text-white rounded transition-colors duration-200;
+  background-color: var(--color-primary);
+
+  &:hover {
+    background-color: var(--color-primary-dark);
+  }
 }
 
 .btn-slim {
@@ -392,4 +372,34 @@ input:not(.input-error):invalid {
   background-color: var(--color-error);
   color: var(--color-white);
   text-shadow: 0 0 1px currentColor;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Edit buttons */
+
+.edit-btn {
+  @apply p-1 border-0 bg-transparent cursor-pointer rounded transition-colors duration-200 inline-flex items-center justify-center;
+}
+
+.edit-btn svg {
+  color: var(--color-primary-dark);
+  transition: color 0.2s;
+}
+
+.edit-btn:hover {
+  background-color: var(--color-border);
+}
+
+.edit-btn:hover svg {
+  color: var(--color-text);
+}
+
+.edit-btn:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
