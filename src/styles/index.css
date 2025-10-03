@@ -403,3 +403,17 @@ input:not(.input-error):invalid {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
+
+/* ***** SUCCESS BANNER ***** */
+
+.success-banner {
+  @apply relative py-3 pl-4 pr-10 rounded-md mb-5;
+  background-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.success-banner .close-btn {
+  @apply absolute top-0 right-0 bg-transparent border-none font-bold text-xl cursor-pointer p-1 w-6 h-6 flex items-center justify-center rounded-sm;
+
+  color: var(--color-text);
+}

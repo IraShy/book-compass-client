@@ -11,6 +11,12 @@ function Profile() {
   const [activeModal, setActiveModal] = useState<
     "username" | "email" | "password" | null
   >(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+  const handlePasswordSuccess = () => {
+    setActiveModal(null);
+    setSuccessMessage("Password updated successfully!");
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (!user) return null;
@@ -18,6 +24,20 @@ function Profile() {
   return (
     <div className="container">
       <h2 className="title">Profile</h2>
+
+      {successMessage && (
+        <div className="success-banner" role="status" aria-live="polite">
+          <span>{successMessage}</span>
+          <button
+            className="close-btn"
+            onClick={() => setSuccessMessage(null)}
+            aria-label="Close success message"
+          >
+            ×
+          </button>
+        </div>
+      )}
+
       <div className="profile-info">
         <p className="profile-field">
           <strong>Username:</strong> {user.username}
@@ -34,6 +54,7 @@ function Profile() {
           <strong>Member since:</strong>{" "}
           {new Date(user.created_at).toLocaleDateString()}
         </p>
+
         <div className="profile-actions">
           <button
             className="btn-slim"
@@ -45,6 +66,7 @@ function Profile() {
           <button className="btn-slim btn-danger">Delete Account</button>
         </div>
       </div>
+
       <UpdateUsernameModal
         isOpen={activeModal === "username"}
         closeModal={() => setActiveModal(null)}
@@ -56,6 +78,7 @@ function Profile() {
       <UpdatePasswordlModal
         isOpen={activeModal === "password"}
         closeModal={() => setActiveModal(null)}
+        onSuccess={handlePasswordSuccess}
       />
     </div>
   );

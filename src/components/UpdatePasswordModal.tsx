@@ -7,7 +7,15 @@ import { useForm } from "../hooks/useForm";
 import Modal from "./Modal";
 import FormField from "./FormField";
 
-function UpdatePasswordlModal({ isOpen, closeModal }: BaseModalProps) {
+interface UpdatePasswordModalProps extends BaseModalProps {
+  onSuccess: () => void;
+}
+
+function UpdatePasswordlModal({
+  isOpen,
+  closeModal,
+  onSuccess,
+}: UpdatePasswordModalProps) {
   const submitHandler = async (data: {
     currentPassword: string;
     newPassword: string;
@@ -17,7 +25,7 @@ function UpdatePasswordlModal({ isOpen, closeModal }: BaseModalProps) {
       currentPassword: data.currentPassword,
       newPassword: data.newPassword,
     });
-    if (response.status === 200) closeModal();
+    if (response.status === 200) onSuccess();
   };
 
   const {
