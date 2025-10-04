@@ -1,26 +1,21 @@
 import { useEffect } from "react";
 import axios from "../config/axios";
 
-import type { BaseModalProps } from "../types";
+import type { EditModalProps } from "../types";
 import { validatePassword, validatePresence } from "../utils/validation";
 import { useForm } from "../hooks/useForm";
 import Modal from "./Modal";
 import FormField from "./FormField";
 
-interface UpdatePasswordModalProps extends BaseModalProps {
-  onSuccess: () => void;
-}
-
 function UpdatePasswordlModal({
   isOpen,
   closeModal,
   onSuccess,
-}: UpdatePasswordModalProps) {
+}: EditModalProps) {
   const submitHandler = async (data: {
     currentPassword: string;
     newPassword: string;
   }) => {
-    console.log(formData);
     const response = await axios.put("users/password", {
       currentPassword: data.currentPassword,
       newPassword: data.newPassword,

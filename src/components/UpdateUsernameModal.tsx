@@ -3,11 +3,15 @@ import axios from "../config/axios";
 import { useForm } from "../hooks/useForm";
 import { useUser } from "../hooks/useUser";
 
-import type { BaseModalProps, User } from "../types";
+import type { EditModalProps, User } from "../types";
 import { validatePresence } from "../utils/validation";
 import Modal from "./Modal";
 import FormField from "./FormField";
-function UpdateUsernameModal({ isOpen, closeModal }: BaseModalProps) {
+function UpdateUsernameModal({
+  isOpen,
+  closeModal,
+  onSuccess,
+}: EditModalProps) {
   const { user, setUser } = useUser();
 
   const submitHandler = async (data: { username: string }) => {
@@ -15,8 +19,7 @@ function UpdateUsernameModal({ isOpen, closeModal }: BaseModalProps) {
       username: data.username,
     });
     setUser(response.data.user);
-    console.log(response);
-    closeModal();
+    if (response.status === 200) onSuccess();
   };
 
   const {
@@ -26,6 +29,7 @@ function UpdateUsernameModal({ isOpen, closeModal }: BaseModalProps) {
     handleBlur,
     handleSubmit,
     resetForm,
+    isFormValid,
   } = useForm<Pick<User, "username"> & { [key: string]: string }>(
     { username: "" },
     {
@@ -66,6 +70,7 @@ function UpdateUsernameModal({ isOpen, closeModal }: BaseModalProps) {
           <button
             type="submit"
             className="btn w-full"
+            disabled={!isFormValid()}
             aria-describedby={errors.api ? "api-error" : undefined}
           >
             Update

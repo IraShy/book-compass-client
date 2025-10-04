@@ -3,11 +3,11 @@ import axios from "../config/axios";
 import { useForm } from "../hooks/useForm";
 import { useUser } from "../hooks/useUser";
 
-import type { BaseModalProps, User } from "../types";
+import type { EditModalProps, User } from "../types";
 import { validateEmail, validatePassword } from "../utils/validation";
 import Modal from "./Modal";
 import FormField from "./FormField";
-function UpdateEmailModal({ isOpen, closeModal }: BaseModalProps) {
+function UpdateEmailModal({ isOpen, closeModal, onSuccess }: EditModalProps) {
   const { setUser } = useUser();
 
   const submitHandler = async (data: { email: string; password: string }) => {
@@ -16,7 +16,7 @@ function UpdateEmailModal({ isOpen, closeModal }: BaseModalProps) {
       password: data.password,
     });
     setUser(response.data.user);
-    closeModal();
+    if (response.status === 200) onSuccess();
   };
 
   const {
@@ -26,6 +26,7 @@ function UpdateEmailModal({ isOpen, closeModal }: BaseModalProps) {
     handleBlur,
     handleSubmit,
     resetForm,
+    isFormValid,
   } = useForm<
     Pick<User, "email"> & { password: string } & { [key: string]: string }
   >(
@@ -79,6 +80,7 @@ function UpdateEmailModal({ isOpen, closeModal }: BaseModalProps) {
           <button
             type="submit"
             className="btn w-full"
+            disabled={!isFormValid()}
             aria-describedby={errors.api ? "api-error" : undefined}
           >
             Update

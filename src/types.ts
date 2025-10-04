@@ -60,7 +60,8 @@ export interface ModalProps {
   children: React.ReactNode;
 }
 
-export interface BaseModalProps {
+export interface EditModalProps {
   isOpen: boolean;
   closeModal: () => void;
+  onSuccess: () => void;
 }

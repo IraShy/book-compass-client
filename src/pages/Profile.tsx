@@ -13,9 +13,13 @@ function Profile() {
   >(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  const handlePasswordSuccess = () => {
+  const handleSuccess = () => {
+    const currentModal = activeModal;
     setActiveModal(null);
-    setSuccessMessage("Password updated successfully!");
+    if (currentModal) {
+      setSuccessMessage(`${currentModal} updated successfully`);
+      setTimeout(() => setSuccessMessage(null), 6000);
+    }
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -24,7 +28,6 @@ function Profile() {
   return (
     <div className="container">
       <h2 className="title">Profile</h2>
-
       {successMessage && (
         <div className="success-banner" role="status" aria-live="polite">
           <span>{successMessage}</span>
@@ -70,15 +73,17 @@ function Profile() {
       <UpdateUsernameModal
         isOpen={activeModal === "username"}
         closeModal={() => setActiveModal(null)}
+        onSuccess={() => handleSuccess()}
       />
       <UpdateEmailModal
         isOpen={activeModal === "email"}
         closeModal={() => setActiveModal(null)}
+        onSuccess={() => handleSuccess()}
       />
       <UpdatePasswordlModal
         isOpen={activeModal === "password"}
         closeModal={() => setActiveModal(null)}
-        onSuccess={handlePasswordSuccess}
+        onSuccess={() => handleSuccess()}
       />
     </div>
   );
