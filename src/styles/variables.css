@@ -9,7 +9,6 @@
   --color-error: theme("colors.red.600");
   --color-api-error-bg: theme("colors.red.100");
   --color-api-error-text: theme("colors.red.800");
-  /* --color-error: #dc2626;
-  --color-api-error-bg: #fee2e2;
-  --color-api-error-text: #991b1b; */
+  --color-warning-bg: #fef2f2;
+  --color-warning-border: #fecaca;
 }

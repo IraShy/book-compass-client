@@ -21,15 +21,6 @@ body {
   color: var(--color-primary);
 }
 
-.btn {
-  @apply p-3 mt-6 text-white rounded transition-colors duration-200;
-  background-color: var(--color-primary);
-
-  &:hover {
-    background-color: var(--color-primary-dark);
-  }
-}
-
 /* ***** FORMS ***** */
 
 .form-container {
@@ -289,13 +280,16 @@ input:not(.input-error):invalid {
 
 /* Info block */
 .info-container {
-  @apply flex items-center gap-2 mt-1;
+  @apply flex items-start gap-2 mt-1;
 }
 .info-button {
-  @apply w-5 h-5 text-xs font-bold rounded-full cursor-pointer border-0 ml-2;
+  @apply w-5 h-5 text-xs font-bold rounded-full cursor-pointer border-0 flex-shrink-0;
   background-color: var(--color-primary);
   color: var(--color-white);
   transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .info-button:hover {
@@ -308,8 +302,9 @@ input:not(.input-error):invalid {
 }
 
 .field-help {
-  @apply text-sm italic m-0 leading-1;
+  @apply text-sm italic m-0 leading-normal;
   color: var(--color-primary-dark);
+  flex: 1;
 }
 
 /* ***** BOOK PAGE ***** */
@@ -329,4 +324,166 @@ input:not(.input-error):invalid {
 
 .book-info .description h3 {
   @apply font-semibold pb-4;
+}
+
+/* ***** PROFILE ***** */
+
+.profile-info p {
+  line-height: 1.8;
+}
+
+.profile-field {
+  @apply flex items-center gap-3;
+}
+
+.profile-actions {
+  @apply flex flex-col sm:flex-row gap-3 mt-6;
+}
+
+/* ***** BUTTONS ***** */
+
+.btn {
+  @apply p-3 mt-6 text-white rounded transition-colors duration-200;
+  background-color: var(--color-primary);
+
+  &:hover {
+    background-color: var(--color-primary-dark);
+  }
+}
+
+.btn-slim {
+  @apply w-full sm:w-auto px-4 py-2 text-sm rounded transition-colors duration-200 border-2;
+  background-color: var(--color-white);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.btn-slim:hover {
+  background-color: var(--color-secondary);
+  border-color: var(--color-primary-dark);
+}
+
+.btn-slim.btn-danger {
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.btn-slim.btn-danger:hover {
+  background-color: var(--color-error);
+  color: var(--color-white);
+  text-shadow: 0 0 1px currentColor;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Edit buttons */
+
+.edit-btn {
+  @apply p-1 border-0 bg-transparent cursor-pointer rounded transition-colors duration-200 inline-flex items-center justify-center;
+}
+
+.edit-btn svg {
+  color: var(--color-primary-dark);
+  transition: color 0.2s;
+}
+
+.edit-btn:hover {
+  background-color: var(--color-border);
+}
+
+.edit-btn:hover svg {
+  color: var(--color-text);
+}
+
+.edit-btn:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ***** SUCCESS BANNER ***** */
+
+.success-banner {
+  @apply relative py-3 pl-4 pr-10 rounded-md mb-5;
+  background-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.success-banner .close-btn {
+  @apply absolute top-0 right-0 bg-transparent border-none font-bold text-xl cursor-pointer p-1 w-6 h-6 flex items-center justify-center rounded-sm;
+
+  color: var(--color-text);
+}
+
+.warning-message {
+  @apply rounded-md p-4 mb-6;
+  background-color: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+}
+
+.warning-message p {
+  @apply mb-2 last:mb-0;
+}
+
+.warning-message ul {
+  @apply ml-4;
+}
+
+.btn-danger:hover:not(:disabled) {
+  @apply bg-red-700;
+}
+
+.modal-actions {
+  @apply flex gap-4 justify-end mt-6;
+}
+
+/* Acknowledgment checkbox */
+.acknowledgement-section {
+  @apply my-6;
+}
+
+.acknowledgement-checkbox {
+  @apply flex items-start gap-3 cursor-pointer text-sm leading-normal font-medium;
+}
+
+.acknowledgement-checkbox input[type="checkbox"] {
+  @apply w-5 h-5 m-0 cursor-pointer flex-shrink-0 mt-0.5;
+}
+
+/* Enhanced button states */
+.btn-secondary {
+  background-color: var(--color-border);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary);
+}
+
+.btn-danger-disabled {
+  @apply opacity-60 pointer-events-none;
+  color: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+}
+
+/* Disabled input styling */
+.input:disabled {
+  @apply bg-gray-50 text-gray-500 cursor-not-allowed opacity-60;
+}
+
+.form-field-container {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.form-field-muted {
+  @apply opacity-20 scale-98 blur-sm grayscale-50;
+}
+
+.acknowledgement-section {
+  @apply my-6 p-4 border-2 rounded-lg bg-sky-50;
+  border-color: var(--color-accent);
 }

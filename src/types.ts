@@ -18,21 +18,12 @@ export interface FormFieldProps {
   value: string;
   placeholder?: string;
   helptext?: string;
-  showHelp?: boolean;
-  onToggleHelp?: () => void;
   error?: string;
   required: boolean;
+  disabled?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-}
-
-export interface PasswordFieldProps {
-  name: string;
-  value: string;
-  error?: string;
-  required: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  showPasswordToggle?: boolean;
 }
 
 export interface User {
@@ -63,7 +54,15 @@ export interface BookSearchData {
   [key: string]: string;
 }
 
-export interface BookSearchModalProps {
+export interface ModalProps {
   isOpen: boolean;
   closeModal: () => void;
+  title: string;
+  children: React.ReactNode;
+}
+
+export interface EditModalProps {
+  isOpen: boolean;
+  closeModal: () => void;
+  onSuccess: () => void;
 }
