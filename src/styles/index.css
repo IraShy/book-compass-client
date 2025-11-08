@@ -417,3 +417,73 @@ input:not(.input-error):invalid {
 
   color: var(--color-text);
 }
+
+.warning-message {
+  @apply rounded-md p-4 mb-6;
+  background-color: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+}
+
+.warning-message p {
+  @apply mb-2 last:mb-0;
+}
+
+.warning-message ul {
+  @apply ml-4;
+}
+
+.btn-danger:hover:not(:disabled) {
+  @apply bg-red-700;
+}
+
+.modal-actions {
+  @apply flex gap-4 justify-end mt-6;
+}
+
+/* Acknowledgment checkbox */
+.acknowledgement-section {
+  @apply my-6;
+}
+
+.acknowledgement-checkbox {
+  @apply flex items-start gap-3 cursor-pointer text-sm leading-normal font-medium;
+}
+
+.acknowledgement-checkbox input[type="checkbox"] {
+  @apply w-5 h-5 m-0 cursor-pointer flex-shrink-0 mt-0.5;
+}
+
+/* Enhanced button states */
+.btn-secondary {
+  background-color: var(--color-border);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary);
+}
+
+.btn-danger-disabled {
+  @apply opacity-60 pointer-events-none;
+  color: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+}
+
+/* Disabled input styling */
+.input:disabled {
+  @apply bg-gray-50 text-gray-500 cursor-not-allowed opacity-60;
+}
+
+.form-field-container {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.form-field-muted {
+  @apply opacity-20 scale-98 blur-sm grayscale-50;
+}
+
+.acknowledgement-section {
+  @apply my-6 p-4 border-2 rounded-lg bg-sky-50;
+  border-color: var(--color-accent);
+}

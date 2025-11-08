@@ -4,12 +4,13 @@ import UpdateUsernameModal from "../components/UpdateUsernameModal";
 import UpdateEmailModal from "../components/UpdateEmailModal";
 import UpdatePasswordlModal from "../components/UpdatePasswordModal";
 import EditButton from "../components/EditButton";
+import DeleteAccountModal from "../components/DeleteAccountModal";
 
 function Profile() {
   const { user, isLoading } = useUser();
 
   const [activeModal, setActiveModal] = useState<
-    "username" | "email" | "password" | null
+    "username" | "email" | "password" | "delete" | null
   >(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
@@ -65,8 +66,12 @@ function Profile() {
           >
             Change Password
           </button>
-          {/* TODO */}
-          <button className="btn-slim btn-danger">Delete Account</button>
+          <button
+            className="btn-slim btn-danger"
+            onClick={() => setActiveModal("delete")}
+          >
+            Delete Account
+          </button>
         </div>
       </div>
 
@@ -82,6 +87,11 @@ function Profile() {
       />
       <UpdatePasswordlModal
         isOpen={activeModal === "password"}
+        closeModal={() => setActiveModal(null)}
+        onSuccess={() => handleSuccess()}
+      />
+      <DeleteAccountModal
+        isOpen={activeModal === "delete"}
         closeModal={() => setActiveModal(null)}
         onSuccess={() => handleSuccess()}
       />

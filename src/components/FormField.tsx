@@ -10,6 +10,7 @@ function FormField({
   helptext,
   error,
   required,
+  disabled = false,
   onChange,
   onBlur,
   showPasswordToggle = false,
@@ -38,6 +39,7 @@ function FormField({
         showPasswordToggle ? "pr-12" : ""
       }`}
       required={required}
+      disabled={disabled}
     />
   );
   return (

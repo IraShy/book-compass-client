@@ -20,6 +20,7 @@ export interface FormFieldProps {
   helptext?: string;
   error?: string;
   required: boolean;
+  disabled?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   showPasswordToggle?: boolean;
