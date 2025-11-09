@@ -21,6 +21,7 @@ export function useForm<T extends Record<string, string>>(
   const [errors, setErrors] = useState<
     Partial<Record<keyof T | "api", string>>
   >({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const debounceRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const debouncedCrossValidation = useCallback(
@@ -131,6 +132,8 @@ export function useForm<T extends Record<string, string>>(
 
     if (!validateForm()) return;
 
+    setIsSubmitting(true);
+
     try {
       await submitHandler(formData);
     } catch (error) {
@@ -147,6 +150,8 @@ export function useForm<T extends Record<string, string>>(
       } else {
         setApiError("Something went wrong. Please try again.");
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -202,5 +207,6 @@ export function useForm<T extends Record<string, string>>(
     handleSubmit,
     resetForm,
     isFormValid,
+    isSubmitting,
   };
 }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../config/axios";
 
@@ -11,29 +10,32 @@ import FormField from "../components/FormField";
 function Register() {
   const navigate = useNavigate();
   const { setUser } = useUser();
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitHandler = async (data: RegisterData) => {
-    setIsSubmitting(true);
     const response = await axios.post("users/register", data);
     setUser(response.data.user);
-    setIsSubmitting(false);
     navigate("/profile");
   };
 
-  const { formData, errors, handleChange, handleBlur, handleSubmit } =
-    useForm<RegisterData>(
-      {
-        email: "",
-        username: "",
-        password: "",
-      },
-      {
-        email: validateEmail,
-        password: validatePassword,
-      },
-      submitHandler
-    );
+  const {
+    formData,
+    errors,
+    isSubmitting,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useForm<RegisterData>(
+    {
+      email: "",
+      username: "",
+      password: "",
+    },
+    {
+      email: validateEmail,
+      password: validatePassword,
+    },
+    submitHandler
+  );
 
   return (
     <>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../config/axios";
 
@@ -12,29 +11,30 @@ function Login() {
   const navigate = useNavigate();
   const { setUser } = useUser();
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const submitHandler = async (data: LoginData) => {
-    setIsSubmitting(true);
-
     const response = await axios.post("users/login", data);
     setUser(response.data.user);
-    setIsSubmitting(false);
     navigate("/profile");
   };
 
-  const { formData, errors, handleChange, handleBlur, handleSubmit } =
-    useForm<LoginData>(
-      {
-        email: "",
-        password: "",
-      },
-      {
-        email: validateEmail,
-        password: validatePassword,
-      },
-      submitHandler
-    );
+  const {
+    formData,
+    errors,
+    isSubmitting,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useForm<LoginData>(
+    {
+      email: "",
+      password: "",
+    },
+    {
+      email: validateEmail,
+      password: validatePassword,
+    },
+    submitHandler
+  );
 
   return (
     <section className="form-container">
