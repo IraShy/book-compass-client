@@ -1,12 +1,48 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import type { Book } from "../types";
+import axios from "../config/axios";
 
 function BookPage() {
+  const { id } = useParams();
   const location = useLocation();
-  const book = location.state?.book as Book;
+  const [book, setBook] = useState<Book | null>(
+    (location.state?.book as Book) || null
+  );
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!book && id) {
+      const fetchBook = async () => {
+        setLoading(true);
+        try {
+          const response = await axios.get(`books/${id}`);
+          setBook(response.data);
+        } catch (err) {
+          if (axios.isAxiosError(err)) {
+            setError(err.response?.data?.error || "Failed to fetch book data");
+          } else {
+            console.log(err);
+            setError("Something went wrong. Please try again.");
+          }
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchBook();
+    }
+  }, [book, id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (!book) {
-    return (
+    return error ? (
+      <div className="api-error-message">{error}</div>
+    ) : (
       <div className="api-error-message">
         No book data found. Please search for a book first.
       </div>

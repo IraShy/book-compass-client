@@ -27,7 +27,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/book" element={<BookPage />} />
+            <Route path="/books/:id" element={<BookPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>

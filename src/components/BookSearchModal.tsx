@@ -2,21 +2,24 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import axios from "../config/axios";
-import type { BaseModalProps, BookSearchData } from "../types";
+import type { ModalProps, BookSearchData } from "../types";
 import { validatePresence } from "../utils/validation";
 import { useForm } from "../hooks/useForm";
 
 import FormField from "./FormField";
 import Modal from "./Modal";
 
-function BookSearchModal({ isOpen, closeModal }: BaseModalProps) {
+function BookSearchModal({ isOpen, closeModal }: ModalProps) {
   const navigate = useNavigate();
 
   const submitHandler = async (data: BookSearchData) => {
     const response = await axios.get("books/find", { params: data });
     console.log(response);
     closeModal();
-    navigate(`/book`, { state: { book: response.data.book } });
+    // navigate(`/book`, { state: { book: response.data.book } });
+    navigate(`/books/${response.data.book.google_books_id}`, {
+      state: { book: response.data.book },
+    });
   };
 
   const {
