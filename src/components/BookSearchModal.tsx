@@ -9,7 +9,7 @@ import { useForm } from "../hooks/useForm";
 import FormField from "./FormField";
 import Modal from "./Modal";
 
-function BookSearchModal({ isOpen, closeModal }: ModalProps) {
+function BookSearchModal({ isOpen, closeModal, title }: ModalProps) {
   const navigate = useNavigate();
 
   const submitHandler = async (data: BookSearchData) => {
@@ -50,7 +50,7 @@ function BookSearchModal({ isOpen, closeModal }: ModalProps) {
   if (!isOpen) return null;
 
   return (
-    <Modal isOpen={isOpen} closeModal={closeModal} title="Search Books">
+    <Modal isOpen={isOpen} closeModal={closeModal} title={title}>
       <section className="form-container">
         <form onSubmit={handleSubmit} noValidate>
           {errors.api && <div className="api-error-message">{errors.api}</div>}

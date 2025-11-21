@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import axios from "../config/axios";
 
 import type { LoginData } from "../types.ts";
@@ -9,12 +9,14 @@ import FormField from "../components/FormField.tsx";
 
 function Login() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/profile";
   const { setUser } = useUser();
 
   const submitHandler = async (data: LoginData) => {
     const response = await axios.post("users/login", data);
     setUser(response.data.user);
-    navigate("/profile");
+    navigate(redirectTo);
   };
 
   const {

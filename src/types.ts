@@ -42,7 +42,7 @@ export interface UserContextType {
 }
 
 export interface Book {
-  id: number;
+  google_books_id: string;
   title: string;
   authors: string[];
   description: string;
@@ -58,11 +58,21 @@ export interface ModalProps {
   isOpen: boolean;
   closeModal: () => void;
   title: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export interface EditModalProps {
   isOpen: boolean;
   closeModal: () => void;
   onSuccess: () => void;
+}
+
+export interface Review {
+  id: number;
+  user_id: number;
+  book_id: string;
+  rating: number;
+  content: string | null;
+  created_at: string;
+  updated_at: string;
 }

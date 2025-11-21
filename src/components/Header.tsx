@@ -73,6 +73,12 @@ function Header() {
               </>
             ) : (
               <>
+                <button
+                  className="nav-button"
+                  onClick={() => setIsSearchOpen(true)}
+                >
+                  Book Search
+                </button>
                 <Link to="/login" className="nav-link" onClick={closeMenu}>
                   Sign In
                 </Link>
@@ -84,6 +90,7 @@ function Header() {
       <BookSearchModal
         isOpen={isSearchOpen}
         closeModal={() => setIsSearchOpen(false)}
+        title="Book Search"
       />
     </>
   );
