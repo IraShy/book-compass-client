@@ -1,16 +1,25 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-
-import { useUser } from "../hooks/useUser";
-import axios from "../config/axios";
 import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+import axios from "../config/axios";
+import { useUser } from "../hooks/useUser";
 import BookSearchModal from "./BookSearchModal";
 
 function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const { user, setUser, isAuthenticated } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const getRedirectPath = (currentPath: string) => {
+    // Don't redirect back to auth pages
+    const authPages = ["/login", "/signup"];
+    return authPages.includes(currentPath) ? "/profile" : currentPath;
+  };
+  const redirectPath = getRedirectPath(currentPath);
 
   const handleLogout = async () => {
     try {
@@ -79,7 +88,11 @@ function Header() {
                 >
                   Book Search
                 </button>
-                <Link to="/login" className="nav-link" onClick={closeMenu}>
+                <Link
+                  to={`/login?redirect=${redirectPath}`}
+                  className="nav-link"
+                  onClick={closeMenu}
+                >
                   Sign In
                 </Link>
               </>
