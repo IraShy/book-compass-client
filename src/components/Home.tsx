@@ -23,6 +23,7 @@ function Home() {
       <Link to="/login" className="btn">
         Get Started
       </Link>
+      <p>CHANGES</p>
     </div>
   );
 }
